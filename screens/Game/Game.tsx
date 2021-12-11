@@ -9,6 +9,8 @@ import { GestureName, PossibleShapes } from "../../gestures/types";
 import ShapeDetector from "./components/ShapeDetector";
 import * as Haptics from "expo-haptics";
 
+const ONE_SECOND = 1000;
+
 interface Props {}
 
 const Game = (props: Props) => {
@@ -21,14 +23,14 @@ const Game = (props: Props) => {
     setCurrentShape(_getRandomShape());
     setTimeout(() => {
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-    }, 300);
+    }, 0.3 * ONE_SECOND);
   };
 
   const _wrongShape = () => {
     setShapeGuessFail(true);
     setTimeout(() => {
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
-    }, 300);
+    }, 0.3 * ONE_SECOND);
   };
 
   const _getRandomShape = (): GestureName => {
@@ -46,17 +48,34 @@ const Game = (props: Props) => {
   const [currentShape, setCurrentShape] = React.useState(_getRandomShape());
   const [shapeGuessed, setShapeGuessed] = React.useState(false);
   const [shapeGuessFail, setShapeGuessFail] = React.useState(false);
+  const [timeLeft, setTimeLeft] = React.useState(30);
 
   React.useEffect(() => {
-    const timeout = setTimeout(() => setShapeGuessed(false), 2000);
+    const timeout = setTimeout(() => setShapeGuessed(false), 2 * ONE_SECOND);
 
     return () => clearTimeout(timeout);
   }, [shapeGuessed]);
 
   React.useEffect(() => {
-    const timeout = setTimeout(() => setShapeGuessFail(false), 2000);
+    const timeout = setTimeout(() => setShapeGuessFail(false), 2 * ONE_SECOND);
     return () => clearTimeout(timeout);
   }, [shapeGuessFail]);
+
+  let timer: NodeJS.Timer;
+  React.useEffect(() => {
+    timer = setInterval(() => {
+      setTimeLeft((timeLeft) => (timeLeft > 0 ? timeLeft - 1 : timeLeft));
+    }, ONE_SECOND);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  React.useEffect(() => {
+    if (timeLeft <= 0) {
+      console.warn("GAME OVER");
+      clearInterval(timer);
+    }
+  }, [timeLeft]);
 
   return (
     <View
@@ -83,6 +102,7 @@ const Game = (props: Props) => {
       <Spacer size={top / BASE_REM} />
       <View>
         <Text.H4>{currentShape}</Text.H4>
+        <Text.H4>Time Left: {timeLeft}/30</Text.H4>
       </View>
       <ShapeDetector
         bgColor="whiteTransparent"
