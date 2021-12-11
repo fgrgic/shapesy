@@ -18,4 +18,5 @@ export interface MainStackParamList {
   Game: undefined;
   Learn: undefined;
   Settings: undefined;
+  Repeat: undefined;
 }
