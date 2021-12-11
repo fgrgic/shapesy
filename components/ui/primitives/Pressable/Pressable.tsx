@@ -4,8 +4,16 @@ import {
   Text,
   Pressable as DefaultPressable,
   PressableProps as DefaultPressableProps,
+  BackgroundPropType,
 } from "react-native";
 import * as Haptics from "expo-haptics";
+import BackgroundColor, {
+  BackgroundColorMixinProps,
+} from "../../mixins/BackgroundColor";
+import Spacing, { SpacingMixinProps } from "../../mixins/Spacing";
+import Border, { BorderMixinProps } from "../../mixins/Border";
+import styled from "styled-components/native";
+import Typography, { TypographyMixinProps } from "../../mixins/Typography";
 
 export type HapticImpactType = "light" | "medium" | "heavy";
 export type HapticFeedbackType = "success" | "error" | "warning";
@@ -42,7 +50,11 @@ async function _impact(type: HapticType) {
   }
 }
 
-export interface PressableProps extends DefaultPressableProps {
+export interface PressableProps
+  extends DefaultPressableProps,
+    BackgroundColorMixinProps,
+    SpacingMixinProps,
+    BorderMixinProps {
   haptics?: HapticType;
   disableHaptics?: boolean;
 }
@@ -53,7 +65,7 @@ const Pressable = ({
   ...rest
 }: PressableProps) => {
   return (
-    <DefaultPressable
+    <StyledPressable
       {...rest}
       onPress={(e) => {
         if (!disableHaptics) {
@@ -64,5 +76,11 @@ const Pressable = ({
     />
   );
 };
+
+const StyledPressable = styled(DefaultPressable)<PressableProps>`
+  ${BackgroundColor}
+  ${Spacing}
+  ${Border}
+`;
 
 export default Pressable;

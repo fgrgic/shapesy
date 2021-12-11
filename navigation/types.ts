@@ -13,10 +13,15 @@ declare global {
 export interface ChatScreenParams {
   roomName: string;
 }
+
+export interface GameOverScreenParams {
+  score: number;
+}
 export interface MainStackParamList {
   Home: undefined;
   Game: undefined;
   Learn: undefined;
   Settings: undefined;
   Repeat: undefined;
+  GameOver: GameOverScreenParams;
 }

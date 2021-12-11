@@ -1,4 +1,4 @@
-import { PossibleShapes, Progress } from "./types";
+import { PossibleShapes } from "./types";
 
 const Triangle = [
   { x: 0, y: 0 },
