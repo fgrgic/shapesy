@@ -1,8 +1,8 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { View, Text } from 'react-native';
-import { useCustomTheme } from '../providers/ThemeProvider';
-import AppContainer from './AppContainer';
+import { StatusBar } from "expo-status-bar";
+import React from "react";
+import { View, Text } from "react-native";
+import { useCustomTheme } from "../providers/ThemeProvider";
+import AppContainer from "./AppContainer";
 
 const Loader = () => {
   const [loadingFinished, setLoadingFinished] = React.useState(true);
@@ -15,12 +15,7 @@ const Loader = () => {
 
   if (!loadingFinished) return null;
 
-  return (
-    <>
-      <AppContainer />
-      <StatusBar />
-    </>
-  );
+  return <AppContainer />;
 };
 
 export default Loader;

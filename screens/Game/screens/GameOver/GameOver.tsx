@@ -23,14 +23,14 @@ const GameOver = ({ route }: Props) => {
         <Text.H2>Congratulations!</Text.H2>
         <Spacer size="large" />
         <View
-          bgColor="primary.D"
+          bgColor="success.background"
           borderRadius="medium"
           marginHorizontal="medium"
           style={{ alignItems: "center", justifyContent: "center" }}
         >
           <Spacer size="large" />
-          <Text.H5>Your score:</Text.H5>
-          <Text.H1>{route.params?.score}</Text.H1>
+          <Text.H5 color="success.text">Your score:</Text.H5>
+          <Text.H1 color="success.text">{route.params?.score}</Text.H1>
           <Spacer size="large" />
         </View>
         <Spacer size="medium" />

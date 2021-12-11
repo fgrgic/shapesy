@@ -72,7 +72,7 @@ const ShapeDetector = ({
             <GesturePath
               center
               path={gestures[shape]}
-              color={theme.palette.primary.E}
+              color={theme.palette.text}
               slopRadius={5}
             />
             {coordinate && <Cursor {...coordinate} />}

@@ -1,12 +1,12 @@
-import { DefaultTheme } from 'styled-components/native';
-import colors from '../colors';
+import { DefaultTheme } from "styled-components/native";
+import colors from "../colors";
 
-import { Default as theme } from './Default';
+import { Default as theme } from "./Default";
 
 const DarkTheme: DefaultTheme = {
   ...theme,
   meta: {
-    name: 'Dark',
+    name: "Dark",
     dark: true,
   },
   palette: {
@@ -40,8 +40,8 @@ const DarkTheme: DefaultTheme = {
       textAlt: colors.cream[100],
     },
     success: {
-      background: colors.aeroGreen[100],
-      text: colors.greyscale.white,
+      background: colors.aeroGreen[400],
+      text: colors.greyscale.black,
       primary: colors.aeroGreen[400],
     },
     warning: {

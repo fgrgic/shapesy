@@ -98,7 +98,7 @@ const Learn = () => {
 
                   return coordinate;
                 })}
-                color="green"
+                color={theme.palette.text}
                 slopRadius={5}
                 center={false}
               />
@@ -123,7 +123,8 @@ const Learn = () => {
               backgroundColor: theme.palette.primary.B,
             }}
           >
-            <Text>Practice:</Text>
+            <Spacer size="xxsmall" />
+            <Text color="primary.text">Practice:</Text>
             {finishedGesture && (
               <GesturePath
                 path={finishedGesture.map((coordinate) => {
@@ -136,7 +137,7 @@ const Learn = () => {
 
                   return coordinate;
                 })}
-                color="green"
+                color={theme.palette.primary.text}
                 slopRadius={5}
                 center={false}
               />

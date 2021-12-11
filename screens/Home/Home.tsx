@@ -30,6 +30,7 @@ const Home = (props: Props) => {
         <MenuButton
           text="Settings"
           bgColor="background.B"
+          textColor="background.text"
           style={{ flex: 1 }}
           bottomSpacer={bottom / BASE_REM}
           onPress={() => navigation.navigate("Settings")}
